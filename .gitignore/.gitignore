@@ -1,0 +1,141 @@
+<?php
+session_start();
+?>
+ <?php 
+    if(isset($_SESSION["use"])){ 
+    header("Location:/new/hame.php");
+     }
+    
+     else{ 
+     	if(isset($_GET["error"]){
+     		echo "email already exists";
+     	}
+        elseif(isset($_GET["var"]){
+            echo "you are now registered <br> kindly login";
+        }
+     	?>
+<html>
+<head>
+<title>HomePage</title>
+<link rel="stylesheet" type="text/css"  href="/new/log.css">
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["firstname"].value;
+    if (x == "") {
+        alert("firstName must be filled out");
+        return false;
+    }
+    var y = document.forms["myForm"]["lastname"].value;
+    if (y == "") {
+        alert("lastName must be filled out");
+        return false;
+    }
+    var z = document.forms["myForm"]["email"].value;
+    if (z == "" ){
+        alert("email must be filled out and have @ and .");
+        return false;
+    } 
+    var reg=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if(reg.test(myForm.email.value) == false){
+    	alert("invalid email address");
+    	return false;
+    }
+
+    var w = document.forms["myForm"]["password"].value;
+    if (w == "") {
+        alert("password must be filled out");
+        return false;
+    }
+    var u = document.forms["myForm"]["username"].value;
+    if (u == "") {
+        alert("userName must be filled out");
+        return false;
+    }
+    var password1 = document.forms["myForm"]["password"].value;
+    var password2 = document.forms["myForm"]["password2"].value;
+    if(password1!=password2)
+     {
+         alert("password should be same");
+         return false;
+     }
+}
+function validateAdmin(){
+    var p=document.forms["form"]["id"].value;
+     if(p ==""){
+        alert("id must be filled out");
+        return false;
+     }
+     var q=document.forms["form"]["adminname"].value;
+     if(q ==""){
+        alert("adminname must be filled out");
+        return false;
+     }
+     var r=document.forms["form"]["mail"].value;
+     if(r ==""){
+        alert("email must be filled out");
+        return false;
+     }
+     var reg=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if(reg.test(form.mail.value) == false){
+        alert("invalid email address");
+        return false;
+    }
+    var s=document.forms["form"]["password"].value;
+    if(s ==""){
+        alert("password must be filled out");
+        return false;
+    }
+}
+
+</script>
+</head>
+<body>
+<header>
+<div class="header">
+   <div id="head1"><a href="/new/home.php" >Home</a></div>
+
+    <div id="head1"><a href="/new/aboutus.php">About Us</a></div>
+
+    <div id="head1"><a href="/new/contact.php">Contact</a></div>
+
+    <div id="head1"><a href="/new/login.php">LogIn</a></div>
+
+     <div id="head1"><a href="/new/register.php">Register</a></div>
+</div>
+</header><br><br>
+
+<div class="form">For User:<br><br>
+	<form  name="myForm" onsubmit="return validateForm();" action="/new/userdb.php" method="post">
+First Name       : <input type="text" name="firstname"/><span class="error">* <?php echo $firstnameErr;?></span>
+  <br><br>
+
+Last Name        : <input type="text" name="lastname"/><span class="error">* <?php echo $lastnameErr;?></span>
+  <br><br>
+
+Email            : <input type="text" name="email" autocomplete="no"/><span class="error">* <?php echo $emailErr;?></span><br><br>
+
+Password         : <input type="password" name="password" /><span class="error">* <?php echo $passwordErr;?></span><br><br>
+
+Confirm Password : <input type="password" name="password2" /><span class="error">* <?php echo $passwordErr;?></span><br><br>
+
+Username         : <input type="text" name="username"/><span class="error">* <?php echo $usernameErr;?></span><br><br>
+
+<input type="submit" name="submit" value="Register"/><br><br>
+
+</form>
+</div>
+
+<div class="form">For Admin:<br><br>
+    <form name="form" onsubmit="return validateAdmin();" action="/new/admindb.php" method="post">
+Admin Id : <input type="text" name="id"/> <br><br>
+
+Admin name : <input type="text" name="adminname"><br><br>
+
+Email : <input type="email" name="mail"><br><br>
+
+Password : <input type="password" name="password2"><br><br> 
+<input type="submit" name="submit2" value="REGISTER">     
+</form></div><br>
+</body>
+<html>
+ <?php } ?>
